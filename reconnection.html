@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="./style.css">
+    <title>RAILWAY</title>
+</head>
+<body>
+    <div class="main_container">
+        <h1 style="text-align: center;color: #000;"><u><b>Reconnection Summary</b></u></h1>    
+        <section class="input_container">
+            <form id="form">
+                <div class="input_wrap">
+                    <label for="employee">Section:</label>
+                    <select type="select" id="selectSection" name="section" for="employee" form="form">
+                        <option value="">Select</option>
+                        <option value="Mysore">Mysore</option>
+                        <option value="Hassan">Hassan</option>
+                        <option value="Kabakaputtur">Kabakaputtur</option>
+                        <option value="Arsikere">Arsikere</option>
+                        <option value="Shivamogga">Shivamogga</option>
+                        <option value="Chitradurga">Chitradurga</option>
+                    </select>
+                </div>
+                <div class="input_wrap">
+                    <label for="staffName">Staff Name:</label>
+                    <input type="text" id="staffName" name="staffname" required><br><br>
+                </div>
+                <div class="input_wrap">
+                    <label for="Time of Reconnect">Time of Reconnect:</label>
+                    <input type="text" id="Time of reconnect" name="Time of reconnect"><br><br>
+                </div>
+                <div class="input_wrap">
+                    <label for="Equipment Name No">Equipment Name No:</label>
+                    <input type="text" id="Equipment Name No" name="Equipment Name No"><br><br>
+                </div>
+                <div class="input_wrap">
+                    <label for="General Remarks">General Remarks:</label>
+                    <input type="text" id="General Remarks" name="General Remarks" required><br><br>
+                </div>
+
+                <div style="display: flex;">
+                    <button type="submit">Submit & Reset</button>
+                </div>
+            </form>
+        </section>
+        <button id="goBack">Back</button>
+
+
+        <button><a
+                href="https://docs.google.com/spreadsheets/d/1PjiODFz7pm9QtHFtXS4O4ep2jlmYgjWMM6_QDB8FqWU/edit#gid=1190830642"
+                target="_black" style="color: #fff">View Sheet</a></button>
+    
+    </div>
+</body>
+
+<script>
+    let form = document.getElementById("form");
+
+    form.addEventListener("submit", (e) => {
+        e.preventDefault();
+
+        const formInfo = new FormData(form);
+        const formValue = JSON.stringify(form)
+        const formInfoObj = Object.fromEntries(formInfo.entries());
+
+        if (formInfoObj?.section !== '') {
+            fetch('https://script.google.com/macros/s/AKfycbwatA5lt8PlpJVylgWz2ih3-moqCYdua9TUUhhCvXNwW39z8qlhrNGIGQhkr3iezBIC/exec',
+                {
+                    method: 'POST',
+                    mode: 'no-cors',
+                    body: formInfo,
+                })
+                .then(res => {
+                    if (res.status == 302 || res.status == 200) {
+                        alert('User Added Successfully')
+                    }
+                })
+                .catch(err => alert(err))
+            this.form.reset();
+        } else {
+            alert('please provide section')
+        }
+    });
+
+    // document.getElementById("goNext").onclick = function () {
+    //     location.href = "./page2.html"
+    // };
+    document.getElementById("goBack").onclick = function () {
+        location.href = "./rail.html"
+    };
+</script>
+
+</html>
+

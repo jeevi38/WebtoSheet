@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="./style.css">
+    <title>RAILWAY</title>
+</head>
+<body>
+    <div class="main_container">
+        <h1 style="text-align: center;color: #000;"><u><b>Movement List</b></u></h1>    
+        <section class="input_container">
+            <form id="form">
+                <div class="input_wrap">
+                    <label for="employee">Section:</label>
+                    <select type="select" id="selectSection" name="section" for="employee" form="form">
+                        <option value="">Select</option>
+                        <option value="Mysore">Mysore</option>
+                        <option value="Hassan">Hassan</option>
+                        <option value="Kabakaputtur">Kabakaputtur</option>
+                        <option value="Arsikere">Arsikere</option>
+                        <option value="Shivamogga">Shivamogga</option>
+                        <option value="Chittradurga">Chitradurga</option>
+                    </select>
+                </div>
+                <div class="input_wrap">
+                    <label for="staffName">Staff Name:</label>
+                    <input type="text" id="staffName" name="staffname" required><br><br>
+                </div>
+                <div class="input_wrap">
+                    <label for="CUG">CUG:</label>
+                    <input type="text" id="CUG" name="cug"><br><br>
+                </div>
+                <div class="input_wrap">
+                    <label for="Other">Other:</label>
+                    <input type="text" id="Other" name="other"><br><br>
+                </div>
+                <div class="input_wrap">
+                    <label for="movement">Movement:</label>
+                    <input type="text" id="movement" name="movement" required><br><br>
+                </div>
+
+                <div style="display: flex;">
+                    <button type="submit">Submit & Reset</button>
+                </div>
+            </form>
+        </section>
+        <button id="goBack">Back</button>
+
+        <button><a
+                href="https://docs.google.com/spreadsheets/d/1pfKWtwaHQwmydvIuA6LYolUd9t8XNUKPeF-poYdyF_I/edit#gid=1630120440"
+                target="_black" style="color: #fff">View Sheet</a></button>
+    </div>
+</body>
+
+<script>
+    let form = document.getElementById("form");
+
+    form.addEventListener("submit", (e) => {
+        e.preventDefault();
+
+        const formInfo = new FormData(form);
+        const formValue = JSON.stringify(form)
+        const formInfoObj = Object.fromEntries(formInfo.entries());
+
+        if (formInfoObj?.section !== '') {
+           fetch('https://script.google.com/macros/s/AKfycbxh9_4Blfro4X2kBaN6aRj7RasHQ_0gb92tnM3Zijf2QYJzAadg8MuklOsatThxaPuP/exec',
+           {
+                    method: 'POST',
+                    mode: 'no-cors',
+                    body: formInfo,
+                })
+                .then(res => {
+                    if (res.status == 302 || res.status == 200) {
+                        alert('User Added Successfully')
+                    }
+                })
+                .catch(err => alert(err))
+            this.form.reset();
+        } else {
+            alert('please provide section')
+        }
+    });
+
+    // document.getElementById("goNext").onclick = function () {
+    //     location.href = "./page2.html"
+    // };
+    document.getElementById("goBack").onclick = function () {
+        location.href = "./rail.html"
+    };
+</script>
+
+</html>
+

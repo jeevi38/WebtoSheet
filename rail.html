@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
+    <title>RAILWAY</title>
+</head>
+<body>
+    <div class="main">
+        <h1 style="text-align: center;color: #000; font-size: 40px;"><u>WORK</u></h1>
+        <section class="input_container" style="margin-bottom: 20px;">
+            <form id="form"><ul>
+                <div class="input_wrap; text-align:center;">      
+                           <li> <label id="goBack"><a href="movement.html" target="_blank"><b>Movement</a></b></label></li>
+                           <br>
+                           <li> <label id="goBack"><a href="disconnection.html" target="_blank"><b>Disconnection</a></b></li>
+                             <br>
+                            <li><label id="goBack"><a href="reconnection.html" target="_blank"><b>Reconnection</a></b></br></li>
+                            </label>
+                        </p>
+                    </label>
+                </ul>
+                </div>
+            </form>
+        </section>
+    </div>
+</body>
+<script>
+let form = document.getElementById("form");
+
+function checkProperties(obj) {
+    for (var key in obj) {
+        if (obj[key] !== null && obj[key] != "")
+            return true;
+    }
+    return false;
+}
+document.getElementById("goBack").onclick = function () {
+        location.href = "./reconnection.html"
+    };
+ document.getElementById("goBack").onclick = function () {
+       location.href = "./disconnection.html"
+    };
+    document.getElementById("goBack").onclick = function () {
+       location.href = "./movement.html"
+    };
+</script>
